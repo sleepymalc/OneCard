@@ -1,14 +1,7 @@
-//
-//  function.c
-//  project2
-//
-//  Created by 胡平邦 on 2019/11/13.
-//  Copyright © 2019 胡平邦. All rights reserved.
-//
-
 #include "function.h"
 
-player *playerct(player *head, int num, int demo) {  //player structer:double link list
+//player structer:double link list
+player *playerct(player *head, int num, int demo) { 
     head = (player *)malloc(sizeof(player));
     head->prev = NULL;
     head->next = NULL;
@@ -17,9 +10,8 @@ player *playerct(player *head, int num, int demo) {  //player structer:double li
     head->steps = 0;
     head->card = NULL;
     head->kind = 1;
-    if (demo == 1) {
-        head->kind = 0;
-    }
+
+    if (demo == 1) head->kind = 0;
     player *list = head;
     for (int i = 2; i <= num; i++) {
         player *body = (player *)malloc(sizeof(player));
@@ -28,14 +20,12 @@ player *playerct(player *head, int num, int demo) {  //player structer:double li
         body->steps = 0;
         body->card = NULL;
         body->kind = 1;
-        if (demo == 1) {
-            body->kind = 0;
-        }
+        if (demo == 1) body->kind = 0;
         list->next = body;
         body->prev = list;
-        if (i != num) {
-            list = list->next;
-        } else {
+        
+        if (i != num) list = list->next;
+        else {
             body->next = head;
             head->prev = body;
         }
@@ -43,8 +33,8 @@ player *playerct(player *head, int num, int demo) {  //player structer:double li
     return head;
 }
 
-void print_image(FILE *fptr, FILE *log)  //draw the card
-{
+//draw the card
+void print_image(FILE *fptr, FILE *log) {
     char read_string[12];
     printf("\n");
     fprintf(log, "\n");
@@ -56,11 +46,12 @@ void print_image(FILE *fptr, FILE *log)  //draw the card
     fprintf(log, "\n");
 }
 
-void drawcard(card *card, int cardnum, int o, FILE *log) {  //draw the ascii card
+//draw the ascii card
+void drawcard(card *card, int cardnum, int o, FILE *log) {  
     char filename[100];
     if (o == 0) {
         for (int i = 0; i < cardnum; i++) {
-            sprintf(filename, "%d.txt", 100 * (card + i)->suits + (card + i)->rank);
+            sprintf(filename, "Ascii_Card/%d.txt", 100 * (card + i)->suits + (card + i)->rank);
             FILE *fptr = fopen(filename, "r");
             print_image(fptr, log);
             fclose(fptr);
@@ -79,14 +70,16 @@ void drawcard(card *card, int cardnum, int o, FILE *log) {  //draw the ascii car
     }
 }
 
-void init(card *stock, int cardnum) {  //initial the card pile
+//initial the card pile
+void init(card *stock, int cardnum) {  
     for (int i = 0; i < cardnum; i++) {
         (stock + i)->rank = i % 13 + 2;
         (stock + i)->suits = (i / 13) % 4 + 1;
     }
 }
 
-void shuffle(card *stock, int num) {  //shuffle the card pile
+//shuffle the card pile
+void shuffle(card *stock, int num) {  
     int a = 0;
     int b = 0;
     srand((int)time(NULL));
@@ -101,7 +94,8 @@ void shuffle(card *stock, int num) {  //shuffle the card pile
     }
 }
 
-void sort(card *Card, int num) {  //sort the card pile
+//sort the card pile
+void sort(card *Card, int num) {  
     for (int i = 0; i < num - 1; i++) {
         int min = i;
         for (int j = i + 1; j < num; j++) {
@@ -115,7 +109,8 @@ void sort(card *Card, int num) {  //sort the card pile
     }
 }
 
-void deal(player *name, int dnum, card **stock, int *stocknum) {  //deal the cards to the player
+//deal the cards to the player
+void deal(player *name, int dnum, card **stock, int *stocknum) {  
     name->cardnum += dnum;
     name->card = (card *)realloc(name->card, sizeof(card) * (name->cardnum));
     while (name->card == NULL) {
@@ -137,7 +132,8 @@ void deal(player *name, int dnum, card **stock, int *stocknum) {  //deal the car
     sort(name->card, name->cardnum);
 }
 
-int first(int num, card **stock, card **discard, int *discardnum, int *cardnum, FILE *log) {  //determine the first player and draw the order-card of each player gets
+//determine the first player and draw the order-card of each player gets
+int first(int num, card **stock, card **discard, int *discardnum, int *cardnum, FILE *log) {  
     int fir = 0;
     *cardnum -= num + 1;
     for (int i = 0; i < num; i++) {
@@ -162,7 +158,8 @@ int first(int num, card **stock, card **discard, int *discardnum, int *cardnum, 
     return fir;
 }
 
-int judgeplay(card *discard, card Pcard) {  //judge if this card is allow to play
+//judge if this card is allow to play
+int judgeplay(card *discard, card Pcard) {
     int n = 1;
     if ((discard->suits) == Pcard.suits) {
         n = 1;
@@ -174,7 +171,8 @@ int judgeplay(card *discard, card Pcard) {  //judge if this card is allow to pla
     return n;
 }
 
-int judgehave(card *discard, player *name) {  //judge if the player have suiutable card to play
+//judge if the player have suitable card to play
+int judgehave(card *discard, player *name) {
     int n = 0;
     for (int i = 0; i < name->cardnum; i++) {
         if ((name->card + i)->rank == discard->rank || (name->card + i)->suits == discard->suits) {
