@@ -297,8 +297,7 @@ void ClearScreen() {
 }
 
 void OneCard(int n, int r, int d, int c, int demo, char *filename) {
-    int stocknum = 52 * d;
-    int discardnum = 0;
+    int stocknum = 52 * d, discardnum = 0;
     player *head = NULL;
     head = playerct(head, n, demo);
     card *stock = (card *)malloc(sizeof(card) * stocknum);
@@ -332,6 +331,7 @@ Number of decks: %d\n\
 Number of players: %d\n\
 ---- Game start ----\n",
             r, d, n);
+            
     player *Nowplay = head;
     for (int i = 1; i <= n; i++) {
         printf("Enter player%d's name!\n", i);  //input each player's name
