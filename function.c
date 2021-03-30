@@ -72,7 +72,7 @@ void drawcard(card *card, int cardnum, int o, FILE *log) {
 
 //initial the card pile
 void init(card *stock, int cardnum) {  
-    for (int i = 0; i < cardnum; i++) {
+    for (int i = 0; i < cardnum; ++i) {
         (stock + i)->rank = i % 13 + 2;
         (stock + i)->suits = (i / 13) % 4 + 1;
     }
@@ -80,10 +80,9 @@ void init(card *stock, int cardnum) {
 
 //shuffle the card pile
 void shuffle(card *stock, int num) {  
-    int a = 0;
-    int b = 0;
+    int a = 0, b = 0;
     srand((int)time(NULL));
-    for (int i = 0; i <= 1000; i++) {
+    for (int i = 0; i <= 1000; ++i) {
         a = rand() % num;
         while (b == a) {
             b = rand() % num;
@@ -160,15 +159,10 @@ int first(int num, card **stock, card **discard, int *discardnum, int *cardnum, 
 
 //judge if this card is allow to play
 int judgeplay(card *discard, card Pcard) {
-    int n = 1;
-    if ((discard->suits) == Pcard.suits) {
-        n = 1;
-    } else if (discard->rank == Pcard.rank) {
-        n = 1;
-    } else {
-        n = 0;
+    if ((discard->suits) == Pcard.suits || discard->rank == Pcard.rank) {
+        return 1;
     }
-    return n;
+    return 0;
 }
 
 //judge if the player have suitable card to play
@@ -394,7 +388,7 @@ Number of players: %d\n\
                 printf("Stock pile exhausted. Shuffling the discard pile and restore the stock pile\n");
                 fprintf(fptr, "Stock pile exhausted. Shuffling the discard pile and restore the stock pile\n");
                 stocknum += discardnum - 1;
-                stock = realloc(stock, sizeof(card) * stocknum);
+                stock = (card *)realloc(stock, sizeof(card) * stocknum);
                 if (stock == NULL) {
                     printf("\n\nasking error\n\n");
                 }
@@ -402,7 +396,7 @@ Number of players: %d\n\
                     *(stock + i) = *(discard + i - stocknum + discardnum);
                 shuffle(stock, stocknum);
                 discardnum = 1;
-                discard = realloc(discard, sizeof(card) * discardnum);
+                discard = (card *)realloc(discard, sizeof(card) * discardnum);
                 if (discard == NULL) {
                     printf("\n\nasking error\n\n");
                 }
@@ -463,7 +457,7 @@ Round %d result:\n",
             }
             stocknum += Nowplay->cardnum;
             Nowplay->cardnum = 0;
-            Nowplay->card = realloc(Nowplay->card, sizeof(card) * Nowplay->cardnum);
+            Nowplay->card = (card *)realloc(Nowplay->card, sizeof(card) * Nowplay->cardnum);
             Nowplay->steps = 0;
             Nowplay = Nowplay->next;
         }
@@ -476,7 +470,7 @@ Round %d result:\n",
             *(stock + stocknum - discardnum + i) = *(discard + i);
         }
         discardnum = 0;
-        discard = realloc(discard, sizeof(card) * discardnum);
+        discard = (card *)realloc(discard, sizeof(card) * discardnum);
     }
     player *winner = head, *compare = head;  //determine the winner
     for (int i = 0; i < n; i++) {
@@ -494,16 +488,16 @@ Round %d result:\n",
         }
         compare = compare->next;
     }
-    fclose(fptr);
+
     free(stock);  //free the memory
     fprintf(fptr, "free stock's memory success\n");
     free(discard);
     fprintf(fptr, "free discard pile's memory success\n");
-    while (compare->next != NULL) {
+    while (compare) {
         winner = compare;
         compare = compare->next;
-        compare->prev = NULL;
         free(winner);
     }
     fprintf(fptr, "free player's memory success\n");
+    fclose(fptr);
 }

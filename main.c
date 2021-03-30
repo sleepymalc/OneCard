@@ -10,7 +10,7 @@
 int main(int argc, char* argv[]) {
     int n = 4, r = 1, d = 2, c = 5, run = 1, demo = 0, islog = 0, opt, option_index = 0;
     unsigned long sizelog;
-    char *optstring = "hn:c:d:r:a", *filename = NULL;
+    char optstring[] = "hn:c:d:r:a", *filename = NULL, default_log_name[] = "onecard.txt";
     static struct option long_options[] = {
         {"log", required_argument, NULL, 'l'},
         {"help", no_argument, NULL, 'h'},
@@ -35,7 +35,7 @@ a|--auto                     run in demo mode\n");
                 break;
             case 'l':
                 sizelog = strlen(optarg);
-                filename = malloc(sizelog * sizeof(char));
+                filename = (char *)malloc(sizelog * sizeof(char));
                 islog = 1;
                 sprintf(filename, "%s", optarg);
                 printf("/n/n%s/n/n", filename);
@@ -59,7 +59,7 @@ a|--auto                     run in demo mode\n");
     }
 
     if (run == 1) {
-        if (islog == 0) filename = "onecard.txt";
+        if (islog == 0) filename = default_log_name;
 
         OneCard(n, r, d, c, demo, filename);
         if (islog == 1)  free(filename);

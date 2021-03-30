@@ -1,1 +1,0 @@
-/Library/Developer/CommandLineTools/usr/bin/cc -O2 -Werror -Wall -Wextra -Wpedantic -std=c11 -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk -Wl,-search_paths_first -Wl,-headerpad_max_install_names  CMakeFiles/main.dir/main.c.o CMakeFiles/main.dir/function.c.o  -o main  -lm 

@@ -27,5 +27,4 @@ typedef struct player{
     struct player *prev;
 }player;
 
-void OneCard(int n,int r,int d,int c,int demo,char *filename);
 #endif

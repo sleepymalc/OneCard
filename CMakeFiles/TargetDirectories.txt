@@ -1,3 +1,0 @@
-/Users/benson/Developer/Card_Game/CMakeFiles/rebuild_cache.dir
-/Users/benson/Developer/Card_Game/CMakeFiles/edit_cache.dir
-/Users/benson/Developer/Card_Game/CMakeFiles/main.dir
