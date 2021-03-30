@@ -1,10 +1,3 @@
-//
-//  project2.h
-//  project2
-//
-//  Created by 胡平邦 on 2019/11/13.
-//  Copyright © 2019 胡平邦. All rights reserved.
-//
 #ifndef project2_h
 #define project2_h
 
@@ -18,7 +11,8 @@
 #include <getopt.h>
 
 typedef struct Card{
-    int rank;int suits;
+    int rank;
+    int suits;
 }card;
 
 
@@ -34,4 +28,4 @@ typedef struct player{
 }player;
 
 void OneCard(int n,int r,int d,int c,int demo,char *filename);
-#endif /* project2_h */
+#endif

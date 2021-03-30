@@ -62,7 +62,7 @@ void drawcard(card *card, int cardnum, int o, FILE *log) {
         for (int i = 0; i < cardnum; i++) {
             printf("%d:", i + 1);
             fprintf(log, "%d:", i + 1);
-            sprintf(filename, "%d.txt", 100 * (card + i)->suits + (card + i)->rank);
+            sprintf(filename, "Ascii_Card/%d.txt", 100 * (card + i)->suits + (card + i)->rank);
             FILE *fptr = fopen(filename, "r");
             print_image(fptr, log);
             fclose(fptr);
@@ -331,7 +331,7 @@ Number of decks: %d\n\
 Number of players: %d\n\
 ---- Game start ----\n",
             r, d, n);
-            
+
     player *Nowplay = head;
     for (int i = 1; i <= n; i++) {
         printf("Enter player%d's name!\n", i);  //input each player's name
