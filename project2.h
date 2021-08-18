@@ -4,6 +4,7 @@
 #include <getopt.h>
 #include <math.h>
 #include <memory.h>
+#include <ncurses.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>

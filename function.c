@@ -36,7 +36,7 @@ player *playerct(player *head, int num, int demo) {
 
 //draw the card
 void print_image(FILE *fptr, FILE *log) {
-    char read_string[12];
+    char read_string[11];
     printf("\n");
     fprintf(log, "\n");
     while (fgets(read_string, sizeof(read_string), fptr) != NULL) {
@@ -282,8 +282,7 @@ int playcard(player *name, card **discard, int *discardnum, card **stock, int *s
 
 void ClearScreen() {
 #if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
-    if (system("clear")) {
-    };
+    printf("\033[2J");
 #endif
 #if defined(_WIN32) || defined(_WIN64)
     if (system("cls")) {
@@ -473,6 +472,7 @@ Round %d result:\n",
         discardnum = 0;
         discard = (card *)realloc(discard, sizeof(card) * discardnum);
     }
+
     player *winner = head, *compare = head;  //determine the winner
     for (int i = 0; i < n; i++) {
         if ((*winner).score < (*compare).score) {

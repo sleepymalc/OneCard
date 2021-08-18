@@ -35,5 +35,5 @@ int playcard(player *name, card **discard, int *discardnum, card **stock, int *s
 
 void ClearScreen();
 
-void OneCard(int n,int r,int d,int c,int demo,char *filename);
+void OneCard(int n, int r, int d, int c, int demo, char *filename);
 #endif /* function_h */
