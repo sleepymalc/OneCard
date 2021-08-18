@@ -58,10 +58,10 @@ reasonable.
 make
 ```
 
-​	By using Cmake, and that make the whole compile process be more easier, and after compiling done, we can run this program by
+by using Cmake. After compiling done, we can run this program by
 
 ```bash
-./main
+./cardgame
 ```
 
 this will run the project in default mode, that means:
@@ -79,13 +79,13 @@ this will run the project in default mode, that means:
 ​	For adjustment of other parameters, please check the help list by
 
 ```bash
-./main -h
+./cardgame -h
 ```
 
 or
 
 ```bash
-./main --help
+./cardgame --help
 ```
 
 for more information.

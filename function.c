@@ -1,7 +1,7 @@
 #include "function.h"
 
 //player structer:double link list
-player *playerct(player *head, int num, int demo) { 
+player *playerct(player *head, int num, int demo) {
     head = (player *)malloc(sizeof(player));
     head->prev = NULL;
     head->next = NULL;
@@ -23,8 +23,9 @@ player *playerct(player *head, int num, int demo) {
         if (demo == 1) body->kind = 0;
         list->next = body;
         body->prev = list;
-        
-        if (i != num) list = list->next;
+
+        if (i != num)
+            list = list->next;
         else {
             body->next = head;
             head->prev = body;
@@ -47,7 +48,7 @@ void print_image(FILE *fptr, FILE *log) {
 }
 
 //draw the ascii card
-void drawcard(card *card, int cardnum, int o, FILE *log) {  
+void drawcard(card *card, int cardnum, int o, FILE *log) {
     char filename[100];
     if (o == 0) {
         for (int i = 0; i < cardnum; i++) {
@@ -71,7 +72,7 @@ void drawcard(card *card, int cardnum, int o, FILE *log) {
 }
 
 //initial the card pile
-void init(card *stock, int cardnum) {  
+void init(card *stock, int cardnum) {
     for (int i = 0; i < cardnum; ++i) {
         (stock + i)->rank = i % 13 + 2;
         (stock + i)->suits = (i / 13) % 4 + 1;
@@ -79,7 +80,7 @@ void init(card *stock, int cardnum) {
 }
 
 //shuffle the card pile
-void shuffle(card *stock, int num) {  
+void shuffle(card *stock, int num) {
     int a = 0, b = 0;
     srand((int)time(NULL));
     for (int i = 0; i <= 1000; ++i) {
@@ -94,7 +95,7 @@ void shuffle(card *stock, int num) {
 }
 
 //sort the card pile
-void sort(card *Card, int num) {  
+void sort(card *Card, int num) {
     for (int i = 0; i < num - 1; i++) {
         int min = i;
         for (int j = i + 1; j < num; j++) {
@@ -109,7 +110,7 @@ void sort(card *Card, int num) {
 }
 
 //deal the cards to the player
-void deal(player *name, int dnum, card **stock, int *stocknum) {  
+void deal(player *name, int dnum, card **stock, int *stocknum) {
     name->cardnum += dnum;
     name->card = (card *)realloc(name->card, sizeof(card) * (name->cardnum));
     while (name->card == NULL) {
@@ -132,7 +133,7 @@ void deal(player *name, int dnum, card **stock, int *stocknum) {
 }
 
 //determine the first player and draw the order-card of each player gets
-int first(int num, card **stock, card **discard, int *discardnum, int *cardnum, FILE *log) {  
+int first(int num, card **stock, card **discard, int *discardnum, int *cardnum, FILE *log) {
     int fir = 0;
     *cardnum -= num + 1;
     for (int i = 0; i < num; i++) {
@@ -392,7 +393,7 @@ Number of players: %d\n\
                 if (stock == NULL) {
                     printf("\n\nasking error\n\n");
                 }
-                for (int i = stocknum - discardnum + 1; i < stocknum + 1; i++)
+                for (int i = stocknum - discardnum + 1; i < stocknum; i++)
                     *(stock + i) = *(discard + i - stocknum + discardnum);
                 shuffle(stock, stocknum);
                 discardnum = 1;
@@ -488,6 +489,8 @@ Round %d result:\n",
         }
         compare = compare->next;
     }
+
+    printf("\n%d\n\n\n", stocknum);
 
     free(stock);  //free the memory
     fprintf(fptr, "free stock's memory success\n");
