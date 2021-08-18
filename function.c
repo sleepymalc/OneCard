@@ -340,7 +340,139 @@ Number of players: %d\n\
         Nowplay = Nowplay->next;
     }
     for (int R = 1; R <= r; R++) {  //game start with r rounds
+        int win = 0, eff = -1, dir = 1, add = 0;
+        printf("Round %d starts!\n", R);
+        fprintf(fptr, "Round %d starts!\n", R);
+        init(stock, stocknum);
+        shuffle(stock, stocknum);
+        printf("Shuffling cards...\n\n");
+        fprintf(fptr, "Shuffling cards...\n\n");
+        if (demo == 1) {
+            drawcard(stock, stocknum, 0, fptr);
         }
+        printf("\nThe First card:");
+        fprintf(fptr, "\nThe First card:");
+        int order = first(n, &stock, &discard, &discardnum, &stocknum, fptr);  //determine the order
+        printf("\n");
+        fprintf(fptr, "\n");
+        printf("\n\nDetermining the playing order...\n\n");
+        fprintf(fptr, "\n\nDetermining the playing order...\n\n");
+        for (int i = 0; i < n; i++) {
+            printf("Player %d-%s:", i + 1, Nowplay->name);  //draw every player's order-card
+            fprintf(fptr, "Player %d-%s:", i + 1, Nowplay->name);
+            drawcard(discard - i + n, 1, 0, fptr);
+            Nowplay = Nowplay->next;
+        }
+        printf("The game will start with player %d\n\n", order + 1);
+        fprintf(fptr, "The game will start with player %d\n\n", order + 1);
+        for (int o = 0; o < order; o++) {  //start from the order
+            Nowplay = Nowplay->next;
+        }
+        while (win == 0) {  //a round
+            if (Nowplay->steps == 0) {
+                deal(Nowplay, c, &stock, &stocknum);  //first round deal c cards to each player
+            }
+            printf("Now is %s's turn!\n\n", Nowplay->name);
+            fprintf(fptr, "Now is %s's turn!\n\n", Nowplay->name);
+            printf("The last card is:");
+            fprintf(fptr, "The last card is:");
+            drawcard(discard, 1, 0, fptr);  //the previous card
+            printf("\n");
+            fprintf(fptr, "\n");
+            drawcard(Nowplay->card, Nowplay->cardnum, 1, fptr);  //draw the player's cards
+            printf("\n");
+            fprintf(fptr, "\n");
+            eff = playcard(Nowplay, &discard, &discardnum, &stock, &stocknum, &add, fptr);  //play a card
+            Nowplay->steps++;
+
+            if (stocknum <= 10) {  //when stock exhausted
+                printf("Stock pile exhausted. Shuffling the discard pile and restore the stock pile\n");
+                fprintf(fptr, "Stock pile exhausted. Shuffling the discard pile and restore the stock pile\n");
+                stocknum += discardnum - 1;
+                stock = (card *)realloc(stock, sizeof(card) * stocknum);
+                if (stock == NULL) {
+                    printf("\n\nasking error\n\n");
+                }
+                for (int i = stocknum - discardnum + 1; i < stocknum; i++)
+                    *(stock + i) = *(discard + i - stocknum + discardnum);
+                shuffle(stock, stocknum);
+                discardnum = 1;
+                discard = (card *)realloc(discard, sizeof(card) * discardnum);
+                if (discard == NULL) {
+                    printf("\n\nasking error\n\n");
+                }
+            }
+
+            if (Nowplay->cardnum == 0) {
+                printf("You Win!\n");
+                fprintf(fptr, "You Win!\n");
+                win = 1;
+            } else {
+                printf("\nNext player\n");
+                fprintf(fptr, "\nNext player\n");
+            }
+            switch (eff) {  //add the effect
+                case 2:
+                    add += 2;
+                    break;
+                case 3:
+                    add += 3;
+                    break;
+                case -2:
+                    add = 0;
+                    break;
+                case 1:
+                    if (dir == 1) {
+                        Nowplay = Nowplay->next;
+                    } else if (dir == -1) {
+                        Nowplay = Nowplay->prev;
+                    }
+                    break;
+                case 0:
+                    dir *= -1;
+                    break;
+            }
+            if (dir == 1) {  //direct=1 is counter clock wise
+                Nowplay = Nowplay->next;
+            } else if (dir == -1) {  //direct=2 is clock wise
+                Nowplay = Nowplay->prev;
+            }
+            ClearScreen();
+        }
+        printf(
+            "---- Stats ----\n\
+Round %d result:\n",
+            R);
+        fprintf(fptr,
+                "---- Stats ----\n\
+Round %d result:\n",
+                R);
+        Nowplay = head;
+        for (int i = 1; i <= n; i++) {  //calculate the score
+            Nowplay->score -= (Nowplay->cardnum);
+            printf("Player %d--%s: %d, total: %d\n", i, Nowplay->name, -Nowplay->cardnum, Nowplay->score);
+            fprintf(fptr, "Player %d--%s: %d, total: %d\n", i, Nowplay->name, -Nowplay->cardnum, Nowplay->score);
+            stock = (card *)realloc(stock, sizeof(card) * (stocknum + Nowplay->cardnum));
+            for (int j = 0; j < Nowplay->cardnum; j++) {
+                *(stock + j + stocknum) = *(Nowplay->card + j);
+            }
+            stocknum += Nowplay->cardnum;
+            Nowplay->cardnum = 0;
+            Nowplay->card = (card *)realloc(Nowplay->card, sizeof(card) * Nowplay->cardnum);
+            Nowplay->steps = 0;
+            Nowplay = Nowplay->next;
+        }
+        printf("Round %d ends\n", R);
+        fprintf(fptr, "Round %d ends\n", R);
+
+        stocknum += discardnum;
+        stock = (card *)realloc(stock, sizeof(card) * stocknum);
+        for (int i = 0; i < discardnum; i++) {
+            *(stock + stocknum - discardnum + i) = *(discard + i);
+        }
+        discardnum = 0;
+        discard = (card *)realloc(discard, sizeof(card) * discardnum);
+    }
     player *winner = head, *compare = head;  //determine the winner
     for (int i = 0; i < n; i++) {
         if ((*winner).score < (*compare).score) {
