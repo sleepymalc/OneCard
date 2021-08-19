@@ -20,10 +20,10 @@ typedef struct player {
     struct player *next;
     int score;
     int cardnum;
-    card *card;
     int kind;
     int steps;
     char name[1000];
+    card *card;
     struct player *prev;
 } player;
 
