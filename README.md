@@ -4,15 +4,15 @@
 	A simple Card Game with beautiful ASCII Art
 </i></b></p>
 
-## About OneCard
-
-### Overview
+## Overview
 
 One Card is a rather simple game played by n persons over a pre-decided number of rounds r. A total of d decks of Poker cards, excluding Jokers, are shuffled and c cards are offered to each player. Before the game start, each player is offered an extra card to determine the playing order. This game is then discarded. The game will be played counter-clockwise, starting with the player who received the extra card with the lowest rank. Once the playing order has been decided all those initial n cards are directly put in the discard pile. Finally, the game starts with the first card of the stockpile being posed face-up, to initiate the rank and suit.
 
 As the game starts each player, following the defined order, plays exactly one card either following the rank or the suit defined by the previous card. Any played card directly goes into the discard pile, and anyone unable to play should draw a card from the top of the stockpile. If the stockpile is exhausted, the discard pile is shuffled and used as a stockpile.
 
 As soon as a player has discarded all his cards the rounds stop. All other players receive a penalty equal to the number of cards left in their hands. The player who won the round initiates the following one, all the other rules remain unchanged. At the end of the r rounds the final score of each player is determined by summing up all his penalties. The person with the highest score wins. In the case of equality, more than one player can be declared the winner.
+
+> A sample [`paly-through`](https://github.com/sleepymalc/CardGame/blob/master/onecard.txt) file is provided.
 
 ### Cards
 
@@ -37,7 +37,7 @@ Cards are split into four main categories:
 
 The **Code Structure** needs to be well organized. To complete the whole project without spending lots of time debugging and to add functions more easily, in this project we use the **Layer coding**, which means that split every function out of the main function, and arranging their order reasonably.
 
-## Compile the program
+## Compiling
 
 You can easily use `make` to compile the source code with [CMake](https://cmake.org/). By running `./cardgame` without any arguments, we'll enter the default mode:
 
@@ -53,7 +53,7 @@ You can use `./cardgame -h` or `./cardgame --help` to see what options you can p
 
 To let the whole game more playable, ASCII art is used to draw the card. For example, we have the spade cards:
 
-```bash
+```text
 ┌─────────┐┌─────────┐┌─────────┐     ┌─────────┐┌─────────┐┌─────────┐
 │A        ││2        ││3        │     │J   JUMP!││Q   TURN!││K        │
 │♠   .    ││♠   ♠    ││♠   ♠    │     │♠   .    ││♠   .    ││♠   .    │
