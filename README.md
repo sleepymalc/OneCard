@@ -1,12 +1,49 @@
 # OneCard
 
+<p align="center">
+
 ```
-##################################################################
-#                                                                #
-#                     Welcome to One Card!                       #
-#                                                                #
-##################################################################
+#############################
+#                           #
+#   Welcome to One Card!    #
+#                           #
+#############################
+---- Initial setup ----
+Number of rounds: 1
+Number of decks: 2
+Number of players: 4
+---- Game start ----
+Enter player1's name!
+Enter player2's name!
+Enter player3's name!
+Enter player4's name!
+Round 1 starts!
+Shuffling cards...
+
+
+┌─────────┐
+│7        │
+│♠ ♠   ♠  │
+│    ♠    │
+│  ♠   ♠  │
+│         │
+│  ♠   ♠ ♠│
+│        7|
+└─────────┘
+
+┌─────────┐
+│7        │
+│♦ ♦   ♦  │
+│    ♦    │
+│  ♦   ♦  │
+│         │
+│  ♦   ♦ ♦│
+│        7|
+└─────────┘
+
 ```
+
+</i></b></p>
 
 <p align="center"><b><i>
 	A simple Card Game with beautiful ASCII Art
@@ -61,7 +98,7 @@ You can use `./cardgame -h` or `./cardgame --help` to see what options you can p
 
 To let the whole game more playable, ASCII art is used to draw the card. For example, we have the spade cards:
 
-```text
+```
 ┌─────────┐┌─────────┐┌─────────┐     ┌─────────┐┌─────────┐┌─────────┐
 │A        ││2        ││3        │     │J   JUMP!││Q   TURN!││K        │
 │♠   .    ││♠   ♠    ││♠   ♠    │     │♠   .    ││♠   .    ││♠   .    │
@@ -69,7 +106,7 @@ To let the whole game more playable, ASCII art is used to draw the card. For exa
 │  (_._)  ││         ││    ♠    │ ... │  (_._)  ││  (_._)  ││  (_._)  │
 │    I    ││         ││         │     │    I    ││    I    ││    I    │
 │        ♠││    ♠   ♠││    ♠   ♠│     │        ♠││        ♠││        ♠│
-│        A|│        2|│        3|     │        J|│        Q|│        K|
+│        A││        2││        3│     │        J││        Q││        K│
 └─────────┘└─────────┘└─────────┘     └─────────┘└─────────┘└─────────┘
 ```
 
