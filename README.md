@@ -1,5 +1,13 @@
 # OneCard
 
+```
+#############################
+#                           #
+#   Welcome to One Card!    #
+#                           #
+#############################
+```
+
 <p align="center"><b><i>
 	A simple Card Game with beautiful ASCII Art
 </i></b></p>
