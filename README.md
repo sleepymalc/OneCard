@@ -59,9 +59,9 @@ Cards are split into four main categories:
 
 The **Code Structure** needs to be well organized. To complete the whole project without spending lots of time debugging and to add functions more easily, in this project we use the **Layer coding**, which means that split every function out of the main function, and arranging their order reasonably.
 
-## Compiling
+## Launch
 
-You can easily use `make` to compile the source code with [CMake](https://cmake.org/). By running `./cardgame` without any arguments, we'll enter the default mode:
+You can use `make` to compile the source code with [CMake](https://cmake.org/). By running `./cardgame` without any arguments, we'll launch the game with the *default mode*:
 
 1. Players: 4
 2. Decks: 2
@@ -69,7 +69,7 @@ You can easily use `make` to compile the source code with [CMake](https://cmake.
 4. Rounds: 1
 5. Log filename: `ondcard.txt`
 
-You can use `./cardgame -h` or `./cardgame --help` to see what options you can pass in.
+> Use `./cardgame -h` or `./cardgame --help` to see what options you can pass in.
 
 ## ASCII Art
 
