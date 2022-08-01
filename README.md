@@ -1,7 +1,7 @@
 # OneCard
 
 <p align="center">
-	<img src="https://github.com/sleepymalc/OneCard/blob/main/preview.png"/>
+	<img src="https://github.com/sleepymalc/OneCard/blob/master/preview.png"/>
 </p>
 
 <p align="center"><b><i>
