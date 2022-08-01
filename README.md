@@ -49,7 +49,7 @@ You can easily use `make` to compile the source code with [CMake](https://cmake.
 
 You can use `./cardgame -h` or `./cardgame --help` to see what options you can pass in.
 
-## ASCII art
+## ASCII Art
 
 To let the whole game more playable, ASCII art is used to draw the card. For example, we have the spade cards:
 
