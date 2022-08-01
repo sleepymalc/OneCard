@@ -55,10 +55,6 @@ Cards are split into four main categories:
 > * A Queen or a Jack, of the same suit as the previous card, can be played to redirect an attack on the previous player, or the player after the next one, respectively.
 > * When under an attack, a player not playing any special card (2, 3, 7, Q, J) must draw cards from the stockpile, and this ends his turn.
 
-## Code Structure
-
-The **Code Structure** needs to be well organized. To complete the whole project without spending lots of time debugging and to add functions more easily, in this project we use the **Layer coding**, which means that split every function out of the main function, and arranging their order reasonably.
-
 ## Launch
 
 You can use `make` to compile the source code with [CMake](https://cmake.org/). By running `./cardgame` without any arguments, we'll launch the game with the *default mode*:
