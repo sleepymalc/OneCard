@@ -1,26 +1,8 @@
 # OneCard
 
 <p align="center">
-
-```
-###################################################################################################
-#                                                                                                 #
-#                                       Welcome to One Card!                                      #
-#                                                                                                 #
-###################################################################################################
------------------------------------------- Initial setup ------------------------------------------
-┌─────────┐┌─────────┐┌─────────┐           ┌─────────┐           ┌─────────┐┌─────────┐┌─────────┐
-│A        ││2        ││3        │           │7        │           │J   JUMP!││Q   TURN!││K        │
-│♠   .    ││♠   ♠    ││♠   ♠    │           │♠ ♠   ♠  │           │♠   .    ││♠   .    ││♠   .    │
-│   / \   ││         ││         │           │    ♠    │           │   / \   ││   / \   ││   / \   │
-│  (_._)  ││         ││    ♠    │    ...    │  ♠   ♠  │    ...    │  (_._)  ││  (_._)  ││  (_._)  │
-│    I    ││         ││         │           │         │           │    I    ││    I    ││    I    │
-│        ♠││    ♠   ♠││    ♠   ♠│           │  ♠   ♠ ♠│           │        ♠││        ♠││        ♠│
-│        A││        2││        3│           │        7│           │        J││        Q││        K│
-└─────────┘└─────────┘└─────────┘           └─────────┘           └─────────┘└─────────┘└─────────┘
-```
-
-</i></b></p>
+	<img src="https://github.com/sleepymalc/OneCard/blob/main/preview.png"/>
+</p>
 
 <p align="center"><b><i>
 	A simple Card Game with beautiful ASCII Art
@@ -57,7 +39,7 @@ Cards are split into four main categories:
 
 ## Launch
 
-You can use `make` to compile the source code with [CMake](https://cmake.org/). By running `./cardgame` without any arguments, we'll launch the game with the *default mode*:
+You can use `make` to compile the source code with [CMake](https://cmake.org/). By running `./onecard` without any arguments, we'll launch the game with the *default mode*:
 
 1. Players: 4
 2. Decks: 2
@@ -65,7 +47,7 @@ You can use `make` to compile the source code with [CMake](https://cmake.org/). 
 4. Rounds: 1
 5. Log filename: `ondcard.txt`
 
-> Use `./cardgame -h` or `./cardgame --help` to see what options you can pass in.
+> Use `./onecard -h` or `./onecard --help` to see what options you can pass in.
 
 ## ASCII Art
 
