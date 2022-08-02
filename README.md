@@ -1,7 +1,7 @@
 # OneCard
 
 <p align="center">
-	<img src="https://github.com/sleepymalc/OneCard/blob/master/preview.png"/>
+	<img src="./preview.png"/>
 </p>
 
 <p align="center"><b><i>
@@ -16,7 +16,7 @@ As the game starts each player, following the defined order, plays exactly one c
 
 As soon as a player has discarded all his cards the rounds stop. All other players receive a penalty equal to the number of cards left in their hands. The player who won the round initiates the following one, all the other rules remain unchanged. At the end of the r rounds the final score of each player is determined by summing up all his penalties. The person with the highest score wins. In the case of equality, more than one player can be declared the winner.
 
-> A sample [`paly-through`](https://github.com/sleepymalc/CardGame/blob/master/onecard.txt) file is provided.
+> A sample [`paly-through`](./onecard.txt) file is provided.
 
 ### Cards
 
